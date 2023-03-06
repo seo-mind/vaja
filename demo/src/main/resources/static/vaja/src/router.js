@@ -1,11 +1,16 @@
 import { createWebHistory, createRouter } from "vue-router";
-import HelloWorld from './components/HelloWorld.vue';
+import LoginComp from './components/LoginComp.vue';
+import SignupComp from './components/SignupComp';
 
 const routes = [
   {
-    path: "/경로",
-    component:  HelloWorld //import해온 컴포넌트,
-  }
+    path: "/",
+    component:  LoginComp //import해온 컴포넌트,
+  },
+  {
+    path: "/signup",
+    component:  SignupComp //import해온 컴포넌트,
+  },
 ];
 
 const router = createRouter({
