@@ -7,18 +7,29 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.JoinColumn;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 @DynamicInsert
-@Table(name="TB_MEMBER_TEST")
+@Table(name="TB_MEMBER_TEST", 
+	uniqueConstraints = { 
+		@UniqueConstraint(columnNames = "name"),
+		@UniqueConstraint(columnNames = "email") 
+	})
 public class TbMemberTest{
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TB_MEMBER_TEST_SEQ")
@@ -26,14 +37,34 @@ public class TbMemberTest{
     private Long memberNo;
 
     private String memberId;
-
+    
     private String name;
-
+    
+    
     private String email;
 
     private Date regDt;
 
     private char grade;
+    
+    @OneToMany(fetch = FetchType.LAZY)
+	@JoinTable(	name = "member_roles", 
+			joinColumns = @JoinColumn(name = "user_id"), 
+			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<TbRolesTest> roles = new HashSet<>();
+
+    
+
+	public TbMemberTest() {
+	}
+
+	public TbMemberTest(String memberId, String name, String email) {
+		this.memberId = memberId;
+		this.name = name;
+		this.email = email;
+	}
+	
+    
 
 	public Long getMemberNo() {
 		return memberNo;
