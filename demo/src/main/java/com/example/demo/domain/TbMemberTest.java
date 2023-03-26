@@ -16,6 +16,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import jakarta.persistence.JoinColumn;
 
 import java.util.Date;
@@ -36,11 +39,17 @@ public class TbMemberTest{
     @SequenceGenerator(name = "TB_MEMBER_TEST_SEQ",sequenceName="TB_MEMBER_TEST_SEQ", allocationSize=1 )
     private Long memberNo;
 
+    @NotBlank
+    @Size(max=30)
     private String memberId;
     
+    @NotBlank
+    @Size(max=30)
     private String name;
     
-    
+    @Email
+    @NotBlank
+    @Size(max=50)
     private String email;
 
     private Date regDt;
