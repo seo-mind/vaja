@@ -7,14 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.domain.TbMemberTest;
 import com.example.demo.repository.MemberRepository;
 
-/**
- * User: HolyEyE
- * Date: 2013. 12. 3. Time: 오전 1:07
- */
+
 @Service
 @Transactional
 public class MemberService {
-	
 	@Autowired
     MemberRepository memberRepository;
 
@@ -30,5 +26,7 @@ public class MemberService {
         
         return member.getMemberNo();
     }
+
+    
 
 }

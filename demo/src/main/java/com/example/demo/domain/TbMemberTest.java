@@ -52,6 +52,11 @@ public class TbMemberTest{
     @Size(max=50)
     private String email;
 
+	@NotBlank
+	@Size(max = 120)
+	private String password;
+	
+
     private Date regDt;
 
     private char grade;
@@ -67,10 +72,10 @@ public class TbMemberTest{
 	public TbMemberTest() {
 	}
 
-	public TbMemberTest(String memberId, String name, String email) {
+	public TbMemberTest(String memberId, String name, String password) {
 		this.memberId = memberId;
 		this.name = name;
-		this.email = email;
+		this.password = password;
 	}
 	
     
@@ -122,7 +127,21 @@ public class TbMemberTest{
 	public void setGrade(char grade) {
 		this.grade = grade;
 	}
-    
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public Set<TbRolesTest> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<TbRolesTest> roles) {
+		this.roles = roles;
+	}
     
 
 
