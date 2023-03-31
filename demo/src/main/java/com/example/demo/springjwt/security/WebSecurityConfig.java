@@ -1,4 +1,4 @@
-package com.example.demo.security;
+package com.example.demo.springjwt.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,9 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.example.demo.security.jwt.AuthEntryPointJwt;
-import com.example.demo.security.jwt.AuthTokenFilter;
 import com.example.demo.service.MemberService;
+import com.example.demo.springjwt.security.jwt.AuthEntryPointJwt;
+import com.example.demo.springjwt.security.jwt.AuthTokenFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -29,6 +29,13 @@ public class WebSecurityConfig {
 	
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler; 
+
+
+	@Bean
+	public AuthTokenFilter authenticationJwtTokenFilter() {
+		return new AuthTokenFilter();
+	}
+	
 	
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
@@ -45,11 +52,6 @@ public class WebSecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Bean
-	public AuthTokenFilter authenticationJwtTokenFilter() {
-		return new AuthTokenFilter();
-	}
-	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)

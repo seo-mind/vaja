@@ -1,10 +1,10 @@
-package com.example.demo.repository;
+package com.example.demo.springjwt.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.domain.TbMemberTest;
+import com.example.demo.springjwt.models.TbMemberTest;
 
 
 public interface MemberRepository extends JpaRepository<TbMemberTest, Long> {

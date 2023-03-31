@@ -1,4 +1,4 @@
-package com.example.demo.security.jwt;
+package com.example.demo.springjwt.security.jwt;
 
 import java.io.IOException;
 
@@ -22,6 +22,8 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 			AuthenticationException authException) throws IOException, ServletException {
 		
 		logger.error("Unauthorized error: {}", authException.getMessage());
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED );
+		
+		//HttpServletResponse.SC_UNAUTHORIZED is the 401 Status code
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized" );
 	}
 }

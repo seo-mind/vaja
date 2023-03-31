@@ -1,7 +1,5 @@
-package com.example.demo.domain;
+package com.example.demo.springjwt.models;
 
-
-import com.example.demo.model.ERole;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,8 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="TB_MEMBER_TEST")
+@Table(name="TB_ROLES_TEST")
 public class TbRolesTest {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.springjwt.models;
 
 public enum ERole {
   ROLE_USER,

@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.springjwt.security.services;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,14 +11,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.domain.TbMemberTest;
+import com.example.demo.springjwt.models.TbMemberTest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
 @Service
 @Transactional
-public class MemberDetailsImpl implements UserDetails  {
+public class UserDetailsImpl implements UserDetails  {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class MemberDetailsImpl implements UserDetails  {
 	private Collection<? extends GrantedAuthority> authorities;
 
 
-	public MemberDetailsImpl(Long memberNo, String memberId, String email, String password,
+	public UserDetailsImpl(Long memberNo, String memberId, String email, String password,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.memberNo = memberNo;
 		this.memberId = memberId;
@@ -44,12 +44,12 @@ public class MemberDetailsImpl implements UserDetails  {
 	}
 	
 
-	public static MemberDetailsImpl build(TbMemberTest user) {
+	public static UserDetailsImpl build(TbMemberTest user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
 				.collect(Collectors.toList());
 
-		return new MemberDetailsImpl(
+		return new UserDetailsImpl(
 				user.getMemberNo() , 
 				user.getMemberId(), 
 				user.getEmail(),
@@ -132,7 +132,7 @@ public class MemberDetailsImpl implements UserDetails  {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		MemberDetailsImpl user = (MemberDetailsImpl) o;
+		UserDetailsImpl user = (UserDetailsImpl) o;
 		return Objects.equals(memberId, user.memberId);
 	}
 

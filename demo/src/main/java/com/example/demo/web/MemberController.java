@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.TbMemberTest;
 import com.example.demo.service.MemberService;
+import com.example.demo.springjwt.models.TbMemberTest;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController

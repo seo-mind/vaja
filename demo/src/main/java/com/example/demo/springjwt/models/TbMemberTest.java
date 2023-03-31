@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.springjwt.models;
 
 import lombok.Data;
 import lombok.Getter;
