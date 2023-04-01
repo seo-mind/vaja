@@ -9,9 +9,9 @@ import com.example.demo.springjwt.models.TbMemberTest;
 
 public interface MemberRepository extends JpaRepository<TbMemberTest, Long> {
 
-	Optional<TbMemberTest> findByMemberid(String member_id);
+	Optional<TbMemberTest> findByMemberId(String member_id);
 	
-	Boolean existsByMemberid(String member_id);
+	Boolean existsByMemberId(String member_id);
 	Boolean existsByEmail(String email);
 	
 }

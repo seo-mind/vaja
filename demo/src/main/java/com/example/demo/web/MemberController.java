@@ -13,7 +13,7 @@ import com.example.demo.springjwt.models.TbMemberTest;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/mem")
 public class MemberController {
 
 	@Autowired

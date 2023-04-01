@@ -8,16 +8,12 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.springjwt.models.TbMemberTest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
-@Service
-@Transactional
 public class UserDetailsImpl implements UserDetails  {
 	
 	private static final long serialVersionUID = 1L;
@@ -126,6 +122,10 @@ public class UserDetailsImpl implements UserDetails  {
 		return email;
 	}
 	
+	public String getMeberId() {
+		return memberId;
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -133,7 +133,7 @@ public class UserDetailsImpl implements UserDetails  {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		UserDetailsImpl user = (UserDetailsImpl) o;
-		return Objects.equals(memberId, user.memberId);
+		return Objects.equals(memberNo, user.memberNo);
 	}
 
 }

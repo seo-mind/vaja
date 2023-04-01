@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -30,7 +31,6 @@ import java.util.Set;
 @DynamicInsert
 @Table(name="TB_MEMBER_TEST", 
 	uniqueConstraints = { 
-		@UniqueConstraint(columnNames = "name"),
 		@UniqueConstraint(columnNames = "email") 
 	})
 public class TbMemberTest{
@@ -42,11 +42,11 @@ public class TbMemberTest{
     @NotBlank
     @Size(max=30)
     private String memberId;
-    
-    @NotBlank
-    @Size(max=30)
-    private String name;
-    
+	
+	@NotBlank
+	@Size(max=30) 
+	private String name ;
+	
     @Email
     @NotBlank
     @Size(max=50)
@@ -61,9 +61,9 @@ public class TbMemberTest{
 
     private char grade;
     
-    @OneToMany(fetch = FetchType.LAZY)
-	@JoinTable(	name = "member_roles", 
-			joinColumns = @JoinColumn(name = "user_id"), 
+    @ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(	name = "tb_member_roles_test", 
+			joinColumns = @JoinColumn(name = "member_no"), 
 			inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<TbRolesTest> roles = new HashSet<>();
 
@@ -72,9 +72,10 @@ public class TbMemberTest{
 	public TbMemberTest() {
 	}
 
-	public TbMemberTest(String memberId, String name, String password) {
-		this.memberId = memberId;
+	public TbMemberTest(String name, String memberId, String email, String password) {
 		this.name = name;
+		this.memberId = memberId;
+		this.email = email;
 		this.password = password;
 	}
 	

@@ -10,6 +10,6 @@ import com.example.demo.springjwt.models.TbRolesTest;
 
 public interface RoleRepository extends JpaRepository<TbRolesTest, Long> {
 
-	Optional<TbRolesTest> findByMemberid(ERole name);
+	Optional<TbRolesTest> findByName(ERole name);
 	
 }
